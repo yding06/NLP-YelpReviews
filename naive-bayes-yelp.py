@@ -3,10 +3,6 @@ import pandas as pd
 import numpy as np
 from collections import Counter, defaultdict
 from sklearn.model_selection import StratifiedShuffleSplit
-import numpy
-import string
-import csv
-import operator
 import math
 import matplotlib.pyplot as plt
 
@@ -16,8 +12,6 @@ import matplotlib.pyplot as plt
 #                           Data Modeling
 #                               
 ##############################################################################
-#find_features('yelp_features_2.txt','yelp_ features_1800.csv',vocab('yelp_features_2.txt', 1800))
-
 
 # this function calculates probability
 # parameters: a dataset, smoothing parameter, number of vocabularies
@@ -28,7 +22,6 @@ def occurrences(dataset, m, vocab):
         prob[key] = math.log(prob[key] + m) / (float(no_of_examples) + m*vocab)
     return prob
 
-# this function 
 def naive_bayes_train(x_train, y_train, m, vocab):
     classes = np.unique(y_train)
     rows, cols = np.shape(x_train)
@@ -47,7 +40,6 @@ def naive_bayes_train(x_train, y_train, m, vocab):
         for j in range(0, cols):
             likelihoods[cls][j] = occurrences(likelihoods[cls][j], m, vocab)
     return likelihoods
-#test(train(x_train, y_train, m, vocab), y_train, x_test, m, vocab)
 
 def naive_bayes_test(likelihoods, y_train, x_test, m, vocab):
     classes = np.unique(y_train)
